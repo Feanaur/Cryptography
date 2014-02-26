@@ -5,7 +5,7 @@
 int even = 0, odd = 0, zerosCounter = 0, onesCounter = 0,period=0, i = 0;
 int previosCondition= 0;
 int gammaBitsLength = 0;
-int shiftRegister = 0;
+unsigned char shiftRegister = 0;
 //F(x) = 1+x+x^3+x^6+x^8
 int coefficientArray[4] = { 1, 2, 5, 7 };
 int resultSequenceFigure = 0;
@@ -60,7 +60,7 @@ int LFSR(int seed)
   
   LFSRstep();
 
-  while((shiftRegister&255)!=seed) //don`t ask, just trust me...
+  while(shiftRegister!=seed) 
   {
     LFSRstep();
     if(gammaBitsLength==8)
@@ -79,7 +79,7 @@ int LFSR(int seed)
 int main(int argc,char *argv[])
 {
   printf("Sequence: ");
-  int seedValue = 243;
+  unsigned char seedValue = 243;
   LFSR(seedValue);
   printf("\nAmount of even elements: %i\nAmount of odd elements: %i\n",even,odd);
   printf("Amount of ones in sequence: %i\nAmount of zeros in sequence: %i\n",onesCounter,zerosCounter);
